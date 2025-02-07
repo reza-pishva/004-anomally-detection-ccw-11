@@ -608,8 +608,8 @@ df = pd.DataFrame(data)
 col1, col2 = st.columns([2,1])
 with col1:
     st.write("This model has been trained by 5240 instances.")
-    st.write("In this model I have chosen 2 clusters and cluster 1 has been selected as abnormal condition.In this model I have considered 10.5 percent of instences as abnormal data.")
-    st.write("As you can see Average Silhouette Score is equal to 0.29.")
+    st.write("In this model,2 clusters have been considered. Cluster -1 has been selected as abnormal condition. In this model I have considered 8 percent of instences as abnormal data.")
+    st.write("As you can see Average Silhouette Score is equal to 0.17.")
 with col2:
     st.table(df)
 
