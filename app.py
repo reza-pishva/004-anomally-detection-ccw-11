@@ -71,9 +71,9 @@ new_data = pd.DataFrame([{
     'C.W OUT LET PRESS': input7
 }])
 # Load the Agg. model, scaler, and clusters
-scaler = joblib.load('scaler_ccw_agg.joblib')
-clusters = joblib.load('clusters_ccw_agg.joblib')
-knearest_model = joblib.load('model2_ccw_agg.joblib')
+scaler = joblib.load('./joblib/scaler_ccw_agg.joblib')
+clusters = joblib.load('./joblib/clusters_ccw_agg.joblib')
+knearest_model = joblib.load('./joblib/model2_ccw_agg.joblib')
 # Load the kmeans model, scaler, and clusters
 scaler2 = joblib.load('scaler_ccw_kmeans.joblib')
 clusters2 = joblib.load('clusters_ccw_kmeans.joblib')
