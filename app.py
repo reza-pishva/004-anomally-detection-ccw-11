@@ -209,11 +209,11 @@ if st.button('Predict Cluster'):
     if (clusters7[indices7[0][0]]==1):
         iso = "Normal"
     else:
-        iso = "Abormal" 
+        iso = "Abnormal" 
     if (clusters8[indices8[0][0]]==0 or clusters8[indices8[0][0]]==1):
         optics = "Normal"
     else:
-        optics = "Abormal"                      
+        optics = "Abnormal"                      
 
 def get_color(value):
     if value == "Normal":
@@ -231,7 +231,7 @@ html_table = f"""
     <th style="border: 1px solid black; padding: 8px;">Clustering algorithm</th>
     <th style="border: 1px solid black; padding: 8px;">Result</th>
   </tr>
-    <tr>
+  <tr>
     <td style="border: 1px solid black; padding: 8px;">Isolation forest Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(iso)}">{iso}</td>
   </tr>
