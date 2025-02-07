@@ -95,6 +95,10 @@ df5 = joblib.load('df_ccw_affinity.joblib')
 scaler6 = joblib.load('scaler_ccw_dbscan.joblib')
 clusters6 = joblib.load('clusters_ccw_dbscan.joblib')
 knearest_model6 = joblib.load('model2_ccw_dbscan.joblib')
+# Load the isolationforest. model, scaler, and clusters
+scaler7 = joblib.load('scaler_ccw_iso.joblib')
+clusters7 = joblib.load('clusters_ccw_iso.joblib')
+knearest_model7 = joblib.load('model2_ccw_iso.joblib')
 # # Load the autoencoder model, scaler, and clusters
 # scaler4 = joblib.load('scaler_vib_temp_auto.joblib')
 # clusters4 = joblib.load('clusters_vib_temp_auto.joblib')
@@ -103,10 +107,7 @@ knearest_model6 = joblib.load('model2_ccw_dbscan.joblib')
 # scaler5 = joblib.load('scaler_ccw_dbscan.joblib')
 # clusters5 = joblib.load('clusters_ccw_dbscan.joblib')
 # knearest_model5 = joblib.load('model2_ccw_dbscan.joblib')
-# # Load the isolationforest. model, scaler, and clusters
-# scaler6 = joblib.load('scaler_vib_temp_iso.joblib')
-# clusters6 = joblib.load('clusters_vib_temp_iso.joblib')
-# knearest_model6 = joblib.load('model2_vib_temp_iso.joblib')
+
 
 
 # Scale the input data using the same scaler
@@ -116,6 +117,7 @@ scaled_data_gaussion = scaler3.transform(new_data)
 scaled_data_spectral = scaler4.transform(new_data)
 scaled_data_affinity = scaler5.transform(new_data)
 scaled_data_dbscan = scaler6.transform(new_data)
+scaled_data_iso= scaler7.transform(new_data)
 # Find the nearest cluster
 _, indices = knearest_model.kneighbors(scaled_data)
 _, indices2 = knearest_model2.kneighbors(scaled_data)
@@ -123,6 +125,7 @@ _, indices3 = gaussian_model3.kneighbors(scaled_data)
 _, indices4 = spectral_model4.kneighbors(scaled_data)
 _, indices5 = affinity_model5.kneighbors(scaled_data)
 _, indices6 = knearest_model6.kneighbors(scaled_data)
+_, indices7 = knearest_model7.kneighbors(scaled_data)
 
 predicted_cluster = clusters[indices[0][0]]
 predicted_cluster2 = clusters2[indices2[0][0]]
@@ -130,6 +133,7 @@ predicted_cluster3 = clusters3[indices3[0][0]]
 predicted_cluster4 = clusters4[indices4[0][0]]
 predicted_cluster5 = clusters5[indices5[0][0]]
 predicted_cluster6 = clusters6[indices6[0][0]]
+predicted_cluster7 = clusters7[indices7[0][0]]
 
 # Predict the cluster for the input data
 agg =""
@@ -140,6 +144,7 @@ dbscan =""
 isolationforest=""
 spectral=""
 affinity=""
+iso=""
 if st.button('Predict Cluster'):
     if (clusters[indices[0][0]]==0 or clusters[indices[0][0]]==1):
         agg = "Normal"      
@@ -196,7 +201,11 @@ if st.button('Predict Cluster'):
         clusters6[indices6[0][0]]==5):
         dbscan = "Abnormal"
     else:
-        dbscan = "Normal"             
+        dbscan = "Normal"     
+    if (clusters6[indices6[0][0]]==1):
+        iso = "Normal"
+    else:
+        iso = "Abormal"             
 
 def get_color(value):
     if value == "Normal":
@@ -462,6 +471,41 @@ with col1:
     st.image('pca-spectral.png', caption='Data distribution', use_column_width=True)
 with col2:
     st.image('sil-spectral.png', caption='Evaluation by Silhouette', use_column_width=True)     
+
+
+st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Isolation forest Clustering</div>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
+st.write(iso)
+st.write(
+    """
+    <style>
+    .dataframe th, .dataframe td {
+        text-align: center;
+
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+data = {
+    'Cluster': [-1, 1],
+    'Count': [420,4820]
+}
+df = pd.DataFrame(data)
+col1, col2 = st.columns([2,1])
+with col1:
+    st.write("This model has been trained by 5240 instances.")
+    st.write("In this model I have chosen 2 clusters and cluster 1 have been selected as abnormal condition.In this model I have considered 8 percent of instences as abnormal data.")
+    # st.write("In the lower part there are Siluouette plot and PCA plot.")
+    st.write("As you can see Average Silhouette Score is equal to 0.39.")
+with col2:
+    st.table(df)
+
+col1, col2 = st.columns(2)
+with col1:
+    st.image('pca-isolationforest.png', caption='Data distribution', use_column_width=True)
+with col2:
+    st.image('sil-isolationforest.png', caption='Evaluation by Silhouette', use_column_width=True)  
 
   
 
