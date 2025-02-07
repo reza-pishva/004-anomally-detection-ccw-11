@@ -16,6 +16,9 @@ st.write("1. Purpose: The CCW system helps in cooling the turbine components, pa
 st.write("2. Components: It typically includes a network of pipes, pumps, and heat exchangers that circulate water or a water-glycol mixture through the turbine")
 st.write("3. Operation: The system continuously circulates the cooling fluid, absorbing heat from the hot turbine parts and transferring it to a heat exchanger where it is dissipated.")
 st.write("4. Benefits: By maintaining lower temperatures, the CCW system enhances the durability and lifespan of the turbine components, improves efficiency, and reduces the risk of thermal stress and damage.")
+
+st.write("The model was trained using historical data, with careful tuning of parameters.")
+st.markdown("<br>", unsafe_allow_html=True)
 df2 = joblib.load('df.joblib')
 st.table(df2)
 
@@ -28,7 +31,7 @@ st.write("5. C.W PUMP OUT LET PRESS")
 st.write("6. C.W.INLET PRESSUR")
 st.write("7. C.W OUT LET PRESS")
 
-st.write("The model was trained using historical data, with careful tuning of parameters.The silhouette score of the model indicates good clustering performance.")
+st.write("The silhouette score of the model indicates good clustering performance.")
 st.markdown(
     """
     <style>
