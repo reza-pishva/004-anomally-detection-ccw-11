@@ -464,7 +464,7 @@ df = pd.DataFrame(data)
 col1, col2 = st.columns([2,1])
 with col1:
     st.write("This model has been trained by 5240 instances.")
-    st.write("In this model I have chosen 8 clusters and clusters 5 and 6 have been selected as abnormal condition.In this model I have considered 12.5 percent of instences as abnormal data.")
+    st.write("In this model I have chosen 8 clusters and clusters 5 and 6 has been selected as abnormal condition.In this model I have considered 12.5 percent of instences as abnormal data.")
     # st.write("In the lower part there are Siluouette plot and PCA plot.")
     st.write("As you can see Average Silhouette Score is equal to 0.367 and it is far from 1.")
 with col2:
