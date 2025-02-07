@@ -8,7 +8,7 @@ import streamlit.components.v1 as components
 
 # Text in first column
 st.markdown("<div style='font-size:36px; font-weight:bold;text-align:center'>M701D Series Gas Turbines</div>", unsafe_allow_html=True)
-st.image('pic/index_im01.jpg', caption='', use_column_width=True)
+st.image('./pic/index_im01.jpg', caption='', use_column_width=True)
 st.markdown("<div style='font-size:20px; font-weight:bold;'>Anomaly Detection for CCW (Closed Circuit Water) system</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
