@@ -11,8 +11,10 @@ st.markdown("<div style='font-size:36px; font-weight:bold;text-align:center'>M70
 st.image('index_im01.jpg', caption='', use_column_width=True)
 st.markdown("<div style='font-size:20px; font-weight:bold;'>Anomaly Detection for CCW (Closed Circuit Water) system</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
-st.write("Data Scientist: Reza Pishva")
-st.write("Quality Assurance Engineer: Almas Baharlooie")
+
+st.markdown("<div style='font-size:18px; font-weight:bold;color:blue'>Data Scientist: Reza Pishva</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:18px; font-weight:bold;color:blue'>Quality Assurance Engineer: Almas Baharlooie</div>", unsafe_allow_html=True)
+
 st.markdown("<br>", unsafe_allow_html=True)
 st.write("The CCW (Closed Circuit Water) system in the M701D Series Gas Turbines is a critical component for cooling and maintaining the efficiency of the turbine. Here's a brief overview:")
 st.write("1. Purpose: The CCW system helps in cooling the turbine components, particularly the blades and vanes, to prevent overheating and maintain optimal performance.")
