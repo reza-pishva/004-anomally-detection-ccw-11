@@ -32,6 +32,7 @@ st.write("6. C.W.INLET PRESSUR")
 st.write("7. C.W OUT LET PRESS")
 
 st.write("The silhouette score of the model indicates good clustering performance.")
+st.write("You may select the value of each feature to determine whether the condition based on our selection is normal or abnormal.")
 st.markdown(
     """
     <style>
