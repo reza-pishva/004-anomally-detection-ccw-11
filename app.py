@@ -242,9 +242,9 @@ if st.button('Predict Cluster'):
     else:
         lof = "Abnormal" 
     if (clusters11[indices11[0][0]]==1):
-        lof = "Normal"
+        svm = "Normal"
     else:
-        lof = "Abnormal"    
+        svm = "Abnormal"    
 
 
 
@@ -679,7 +679,7 @@ with col2:
 
 st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>One-Class SVM</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
-st.write(lof)
+st.write(svm)
 st.write(
     """
     <style>
