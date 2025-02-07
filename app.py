@@ -111,7 +111,10 @@ knearest_model9= joblib.load('model2_ccw_birch.joblib')
 scaler10 = joblib.load('scaler_ccw_lof.joblib')
 clusters10 = joblib.load('clusters_ccw_lof.joblib')
 knearest_model10= joblib.load('model2_ccw_lof.joblib')
-
+# Load the one class svm. model, scaler, and clusters
+scaler11 = joblib.load('scaler_ccw_svm.joblib')
+clusters11 = joblib.load('clusters_ccw_svm.joblib')
+knearest_model11= joblib.load('model2_ccw_svm.joblib')
 
 # Scale the input data using the same scaler
 scaled_data = scaler.transform(new_data)
@@ -124,6 +127,8 @@ scaled_data_iso= scaler7.transform(new_data)
 scaled_data_optics= scaler8.transform(new_data)
 scaled_data_birch= scaler9.transform(new_data)
 scaled_data_lof= scaler10.transform(new_data)
+scaled_data_svm= scaler11.transform(new_data)
+
 # Find the nearest cluster
 _, indices = knearest_model.kneighbors(scaled_data)
 _, indices2 = knearest_model2.kneighbors(scaled_data)
@@ -135,6 +140,7 @@ _, indices7 = knearest_model7.kneighbors(scaled_data)
 _, indices8 = knearest_model8.kneighbors(scaled_data)
 _, indices9 = knearest_model9.kneighbors(scaled_data)
 _, indices10 = knearest_model10.kneighbors(scaled_data)
+_, indices11 = knearest_model11.kneighbors(scaled_data)
 
 predicted_cluster = clusters[indices[0][0]]
 predicted_cluster2 = clusters2[indices2[0][0]]
@@ -146,6 +152,7 @@ predicted_cluster7 = clusters7[indices7[0][0]]
 predicted_cluster8 = clusters8[indices8[0][0]]
 predicted_cluster9 = clusters9[indices9[0][0]]
 predicted_cluster10 = clusters10[indices10[0][0]]
+predicted_cluster11 = clusters11[indices11[0][0]]
 # Predict the cluster for the input data
 agg =""
 kmeans =""
@@ -159,6 +166,7 @@ iso=""
 optics=""
 birch=""
 lof=""
+svm=""
 if st.button('Predict Cluster'):
     if (clusters[indices[0][0]]==0 or clusters[indices[0][0]]==1):
         agg = "Normal"      
@@ -233,6 +241,10 @@ if st.button('Predict Cluster'):
         lof = "Normal"
     else:
         lof = "Abnormal" 
+    if (clusters11[indices11[0][0]]==1):
+        lof = "Normal"
+    else:
+        lof = "Abnormal"    
 
 
 
@@ -290,6 +302,10 @@ html_table = f"""
   <tr>
     <td style="border: 1px solid black; padding: 8px;">LOF</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(lof)}">{lof}</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">One-Class SVM</td>
+    <td style="border: 1px solid black; padding: 8px;{get_color(svm)}">{svm}</td>
   </tr>
 </table>
 """
@@ -656,7 +672,43 @@ col1, col2 = st.columns(2)
 with col1:
     st.image('pca-lof.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-lof.png', caption='Evaluation by Silhouette', use_column_width=True)     
+    st.image('sil-lof.png', caption='Evaluation by Silhouette', use_column_width=True)  
+
+
+
+
+st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>One-Class SVM</div>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
+st.write(lof)
+st.write(
+    """
+    <style>
+    .dataframe th, .dataframe td {
+        text-align: center;
+
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+data = {
+    'Cluster': [-1,1],
+    'Count': [418,4822]
+}
+df = pd.DataFrame(data)
+col1, col2 = st.columns([2,1])
+with col1:
+    st.write("This model has been trained by 5240 instances.")
+    st.write("In this model,2 clusters have been considered. Cluster -1 has been selected as abnormal condition. In this model I have considered 8 percent of instences as abnormal data.")
+    st.write("As you can see Average Silhouette Score is equal to 0.35.")
+with col2:
+    st.table(df)
+
+col1, col2 = st.columns(2)
+with col1:
+    st.image('pca-svm.png', caption='Data distribution', use_column_width=True)
+with col2:
+    st.image('sil-svm.png', caption='Evaluation by Silhouette', use_column_width=True)        
 
 
     
