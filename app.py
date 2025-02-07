@@ -364,6 +364,10 @@ with col1:
     st.image('pca-kmeans.png', caption='Data distribution', use_column_width=True)
 with col2:
     st.image('sil-kmeans.png', caption='Evaluation by Silhouette', use_column_width=True) 
+
+
+
+
 st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Gaussian Mixture Model</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(gaussian)
@@ -389,6 +393,41 @@ with col1:
     st.write("In this model, I have chosen 6 clusters. Clusters 2 and 4 have been identified as abnormal conditions, and 14 percent of the instances have been classified as abnormal data points.")
     # st.write("In the lower part there are Siluouette plot and PCA plot.")
     st.write("As you can see Average Silhouette Score is equal to 0.15 and it is far from 1.")
+with col2:
+    st.table(df)
+
+col1, col2 = st.columns(2)
+with col1:
+    st.image('pca-gaussian.png', caption='Data distribution', use_column_width=True)
+with col2:
+    st.image('sil-gaussian.png', caption='Evaluation by Silhouette', use_column_width=True) 
+
+
+st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Spectral Clustering</div>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
+st.write(spectral)
+st.write(
+    """
+    <style>
+    .dataframe th, .dataframe td {
+        text-align: center;
+
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+data = {
+    'Cluster': [0,1,2,3,4,5,6,7],
+    'Count': [1386,202,1658,104,440,14,152,1284]
+}
+df = pd.DataFrame(data)
+col1, col2 = st.columns([2,1])
+with col1:
+    st.write("This model has been trained by 5240 instances.")
+    st.write("In this model, I have chosen 8 clusters. Clusters 0,2,4 and 7 have been identified as normal conditions, and 10 percent of the instances have been classified as abnormal data points.")
+    # st.write("In the lower part there are Siluouette plot and PCA plot.")
+    st.write("As you can see Average Silhouette Score is equal to 0.33 and it is far from 1.")
 with col2:
     st.table(df)
 
