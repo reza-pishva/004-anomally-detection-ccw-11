@@ -8,7 +8,7 @@ import streamlit.components.v1 as components
 
 # Text in first column
 st.markdown("<div style='font-size:36px; font-weight:bold;text-align:center'>M701D Series Gas Turbines</div>", unsafe_allow_html=True)
-st.image('index_im01.jpg', caption='', use_column_width=True)
+st.image('pic/index_im01.jpg', caption='', use_column_width=True)
 st.markdown("<div style='font-size:20px; font-weight:bold;'>Anomaly Detection for CCW (Closed Circuit Water) system</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -24,7 +24,7 @@ st.write("4. Benefits: By maintaining lower temperatures, the CCW system enhance
 
 st.write("The model was trained using historical data, with careful tuning of parameters.")
 st.markdown("<br>", unsafe_allow_html=True)
-df2 = joblib.load('df.joblib')
+df2 = joblib.load('joblib/df.joblib')
 st.table(df2)
 
 st.write("The features used to train the model are the following:")
@@ -75,46 +75,46 @@ scaler = joblib.load('joblib/scaler_ccw_agg.joblib')
 clusters = joblib.load('joblib/clusters_ccw_agg.joblib')
 knearest_model = joblib.load('joblib/model2_ccw_agg.joblib')
 # Load the kmeans model, scaler, and clusters
-scaler2 = joblib.load('scaler_ccw_kmeans.joblib')
-clusters2 = joblib.load('clusters_ccw_kmeans.joblib')
-knearest_model2 = joblib.load('model2_ccw_kmeans.joblib')
+scaler2 = joblib.load('joblib/scaler_ccw_kmeans.joblib')
+clusters2 = joblib.load('joblib/clusters_ccw_kmeans.joblib')
+knearest_model2 = joblib.load('joblib/model2_ccw_kmeans.joblib')
 # Load the gaussion model, scaler, and clusters
-scaler3 = joblib.load('scaler_ccw_gaussian.joblib')
-clusters3 = joblib.load('clusters_ccw_gaussian.joblib')
-gaussian_model3 = joblib.load('model2_ccw_gaussian.joblib')
+scaler3 = joblib.load('joblib/scaler_ccw_gaussian.joblib')
+clusters3 = joblib.load('joblib/clusters_ccw_gaussian.joblib')
+gaussian_model3 = joblib.load('joblib/model2_ccw_gaussian.joblib')
 # Load the spectral clustering model, scaler, and clusters
-scaler4 = joblib.load('scaler_ccw_spectral.joblib')
-clusters4 = joblib.load('clusters_ccw_spectral.joblib')
-spectral_model4 = joblib.load('model2_ccw_spectral.joblib')
+scaler4 = joblib.load('joblib/scaler_ccw_spectral.joblib')
+clusters4 = joblib.load('joblib/clusters_ccw_spectral.joblib')
+spectral_model4 = joblib.load('joblib/model2_ccw_spectral.joblib')
 # Load the spectral clustering model, scaler, and clusters
-scaler5 = joblib.load('scaler_ccw_affinity.joblib')
-clusters5 = joblib.load('clusters_ccw_affinity.joblib')
-affinity_model5 = joblib.load('model2_ccw_affinity.joblib')
-df5 = joblib.load('df_ccw_affinity.joblib')
+scaler5 = joblib.load('joblib/scaler_ccw_affinity.joblib')
+clusters5 = joblib.load('joblib/clusters_ccw_affinity.joblib')
+affinity_model5 = joblib.load('joblib/model2_ccw_affinity.joblib')
+df5 = joblib.load('joblib/df_ccw_affinity.joblib')
 # Load the dbscan model, scaler, and clusters
-scaler6 = joblib.load('scaler_ccw_dbscan.joblib')
-clusters6 = joblib.load('clusters_ccw_dbscan.joblib')
-knearest_model6 = joblib.load('model2_ccw_dbscan.joblib')
+scaler6 = joblib.load('joblib/scaler_ccw_dbscan.joblib')
+clusters6 = joblib.load('joblib/clusters_ccw_dbscan.joblib')
+knearest_model6 = joblib.load('joblib/model2_ccw_dbscan.joblib')
 # Load the isolationforest. model, scaler, and clusters
-scaler7 = joblib.load('scaler_ccw_iso.joblib')
-clusters7 = joblib.load('clusters_ccw_iso.joblib')
-knearest_model7 = joblib.load('model2_ccw_iso.joblib')
+scaler7 = joblib.load('joblib/scaler_ccw_iso.joblib')
+clusters7 = joblib.load('joblib/clusters_ccw_iso.joblib')
+knearest_model7 = joblib.load('joblib/model2_ccw_iso.joblib')
 # Load the autoencoder model, scaler, and clusters
-scaler8 = joblib.load('scaler_ccw_optics.joblib')
-clusters8 = joblib.load('clusters_ccw_optics.joblib')
-knearest_model8 = joblib.load('model2_ccw_optics.joblib')
+scaler8 = joblib.load('joblib/scaler_ccw_optics.joblib')
+clusters8 = joblib.load('joblib/clusters_ccw_optics.joblib')
+knearest_model8 = joblib.load('joblib/model2_ccw_optics.joblib')
 # Load the birch. model, scaler, and clusters
-scaler9 = joblib.load('scaler_ccw_birch.joblib')
-clusters9 = joblib.load('clusters_ccw_birch.joblib')
-knearest_model9= joblib.load('model2_ccw_birch.joblib')
+scaler9 = joblib.load('joblib/scaler_ccw_birch.joblib')
+clusters9 = joblib.load('joblib/clusters_ccw_birch.joblib')
+knearest_model9= joblib.load('joblib/model2_ccw_birch.joblib')
 # Load the lof. model, scaler, and clusters
-scaler10 = joblib.load('scaler_ccw_lof.joblib')
-clusters10 = joblib.load('clusters_ccw_lof.joblib')
-knearest_model10= joblib.load('model2_ccw_lof.joblib')
+scaler10 = joblib.load('joblib/scaler_ccw_lof.joblib')
+clusters10 = joblib.load('joblib/clusters_ccw_lof.joblib')
+knearest_model10= joblib.load('joblib/model2_ccw_lof.joblib')
 # Load the one class svm. model, scaler, and clusters
-scaler11 = joblib.load('scaler_ccw_svm.joblib')
-clusters11 = joblib.load('clusters_ccw_svm.joblib')
-knearest_model11= joblib.load('model2_ccw_svm.joblib')
+scaler11 = joblib.load('joblib/scaler_ccw_svm.joblib')
+clusters11 = joblib.load('joblib/clusters_ccw_svm.joblib')
+knearest_model11= joblib.load('joblib/model2_ccw_svm.joblib')
 
 # Scale the input data using the same scaler
 scaled_data = scaler.transform(new_data)
@@ -354,9 +354,9 @@ with col2:
     st.table(df)
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pca-agg.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-agg.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-agg.png', caption='Evaluation by Silhouette', use_column_width=True) 
+    st.image('pic/sil-agg.png', caption='Evaluation by Silhouette', use_column_width=True) 
 
 
 st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>KMeans clustering</div>", unsafe_allow_html=True)
@@ -389,9 +389,9 @@ with col2:
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pca-kmeans.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-kmeans.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-kmeans.png', caption='Evaluation by Silhouette', use_column_width=True) 
+    st.image('pic/sil-kmeans.png', caption='Evaluation by Silhouette', use_column_width=True) 
 
 
 
@@ -426,9 +426,9 @@ with col2:
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pca-gaussian.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-gaussian.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-gaussian.png', caption='Evaluation by Silhouette', use_column_width=True) 
+    st.image('pic/sil-gaussian.png', caption='Evaluation by Silhouette', use_column_width=True) 
 
 
 st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Spectral Clustering</div>", unsafe_allow_html=True)
@@ -461,9 +461,9 @@ with col2:
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pca-gaussian.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-gaussian.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-gaussian.png', caption='Evaluation by Silhouette', use_column_width=True) 
+    st.image('pic/sil-gaussian.png', caption='Evaluation by Silhouette', use_column_width=True) 
 
 
 st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Affinity propagation Clustering</div>", unsafe_allow_html=True)
@@ -511,9 +511,9 @@ with col2:
 
 # col1, col2 = st.columns(2)
 # with col1:
-#     st.image('pca-affinity.png', caption='Data distribution', use_column_width=True)
+#     st.image('pic/pca-affinity.png', caption='Data distribution', use_column_width=True)
 # with col2:
-#     st.image('sil-affinity.png', caption='Evaluation by Silhouette', use_column_width=True)     
+#     st.image('pic/sil-affinity.png', caption='Evaluation by Silhouette', use_column_width=True)     
 
 
 
@@ -545,9 +545,9 @@ with col2:
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pca-dbscan.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-dbscan.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-dbscan.png', caption='Evaluation by Silhouette', use_column_width=True)     
+    st.image('pic/sil-dbscan.png', caption='Evaluation by Silhouette', use_column_width=True)     
 
 
 st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Spectral Clustering</div>", unsafe_allow_html=True)
@@ -580,9 +580,9 @@ with col2:
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pca-spectral.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-spectral.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-spectral.png', caption='Evaluation by Silhouette', use_column_width=True)     
+    st.image('pic/sil-spectral.png', caption='Evaluation by Silhouette', use_column_width=True)     
 
 
 st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Isolation forest Clustering</div>", unsafe_allow_html=True)
@@ -615,9 +615,9 @@ with col2:
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pca-isolationforest.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-isolationforest.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-isolationforest.png', caption='Evaluation by Silhouette', use_column_width=True)  
+    st.image('pic/sil-isolationforest.png', caption='Evaluation by Silhouette', use_column_width=True)  
 
 
 st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>OPTICS (Ordering Points To Identify the Clustering Structure)</div>", unsafe_allow_html=True)
@@ -649,9 +649,9 @@ with col2:
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pca-optics.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-optics.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-optics.png', caption='Evaluation by Silhouette', use_column_width=True)   
+    st.image('pic/sil-optics.png', caption='Evaluation by Silhouette', use_column_width=True)   
 
 st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Local Outlier Factor (LOF)</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
@@ -682,9 +682,9 @@ with col2:
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pca-lof.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-lof.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-lof.png', caption='Evaluation by Silhouette', use_column_width=True)  
+    st.image('pic/sil-lof.png', caption='Evaluation by Silhouette', use_column_width=True)  
 
 
 
@@ -718,9 +718,9 @@ with col2:
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pca-svm.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-svm.png', caption='Data distribution', use_column_width=True)
 with col2:
-    st.image('sil-svm.png', caption='Evaluation by Silhouette', use_column_width=True)        
+    st.image('pic/sil-svm.png', caption='Evaluation by Silhouette', use_column_width=True)        
 
 
     
