@@ -103,10 +103,10 @@ knearest_model7 = joblib.load('model2_ccw_iso.joblib')
 scaler8 = joblib.load('scaler_ccw_optics.joblib')
 clusters8 = joblib.load('clusters_ccw_optics.joblib')
 knearest_model8 = joblib.load('model2_ccw_optics.joblib')
-# Load the dbscan. model, scaler, and clusters
-# scaler5 = joblib.load('scaler_ccw_dbscan.joblib')
-# clusters5 = joblib.load('clusters_ccw_dbscan.joblib')
-# knearest_model5 = joblib.load('model2_ccw_dbscan.joblib')
+# Load the birch. model, scaler, and clusters
+scaler9 = joblib.load('scaler_ccw_birch.joblib')
+clusters9 = joblib.load('clusters_ccw_birch.joblib')
+knearest_model9= joblib.load('model2_ccw_birch.joblib')
 
 
 
@@ -119,6 +119,7 @@ scaled_data_affinity = scaler5.transform(new_data)
 scaled_data_dbscan = scaler6.transform(new_data)
 scaled_data_iso= scaler7.transform(new_data)
 scaled_data_optics= scaler8.transform(new_data)
+scaled_data_birch= scaler9.transform(new_data)
 # Find the nearest cluster
 _, indices = knearest_model.kneighbors(scaled_data)
 _, indices2 = knearest_model2.kneighbors(scaled_data)
@@ -128,6 +129,7 @@ _, indices5 = affinity_model5.kneighbors(scaled_data)
 _, indices6 = knearest_model6.kneighbors(scaled_data)
 _, indices7 = knearest_model7.kneighbors(scaled_data)
 _, indices8 = knearest_model8.kneighbors(scaled_data)
+_, indices9 = knearest_model9.kneighbors(scaled_data)
 
 predicted_cluster = clusters[indices[0][0]]
 predicted_cluster2 = clusters2[indices2[0][0]]
@@ -137,6 +139,7 @@ predicted_cluster5 = clusters5[indices5[0][0]]
 predicted_cluster6 = clusters6[indices6[0][0]]
 predicted_cluster7 = clusters7[indices7[0][0]]
 predicted_cluster8 = clusters8[indices8[0][0]]
+predicted_cluster9 = clusters9[indices9[0][0]]
 
 # Predict the cluster for the input data
 agg =""
@@ -149,6 +152,7 @@ spectral=""
 affinity=""
 iso=""
 optics=""
+birch=""
 if st.button('Predict Cluster'):
     if (clusters[indices[0][0]]==0 or clusters[indices[0][0]]==1):
         agg = "Normal"      
@@ -214,7 +218,11 @@ if st.button('Predict Cluster'):
         optics = "Normal"
     else:
         optics = "Abnormal"                      
-
+    if (clusters9[indices9[0][0]]==1 or clusters9[indices9[0][0]]==7 or 
+        clusters9[indices9[0][0]]==9):
+        birch = "Abnormal"
+    else:
+        birch = "Normal"     
 def get_color(value):
     if value == "Normal":
         return 'font-size:18px;font-weight: bold;color: green;'
@@ -260,6 +268,10 @@ html_table = f"""
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">OPTICS</td>
+    <td style="border: 1px solid black; padding: 8px;{get_color(optics)}">{optics}</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">BIRCH</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(optics)}">{optics}</td>
   </tr>
 </table>
@@ -556,5 +568,38 @@ with col1:
     st.image('pca-optics.png', caption='Data distribution', use_column_width=True)
 with col2:
     st.image('sil-optics.png', caption='Evaluation by Silhouette', use_column_width=True)   
+
+st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>BIRCH (Balanced Iterative Reducing and Clustering using Hierarchies)</div>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
+st.write(optics)
+st.write(
+    """
+    <style>
+    .dataframe th, .dataframe td {
+        text-align: center;
+
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+data = {
+    'Cluster': [0,1,2,3,4,5,6,7,8,9,10],
+    'Count': [163,1996,194,5,9,5,102,1437,1,1327,1]
+}
+df = pd.DataFrame(data)
+col1, col2 = st.columns([2,1])
+with col1:
+    st.write("This model has been trained by 5240 instances.")
+    st.write("In this model I have chosen 2 clusters and cluster 1 has been selected as abnormal condition.In this model I have considered 10.5 percent of instences as abnormal data.")
+    st.write("As you can see Average Silhouette Score is equal to 0.29.")
+with col2:
+    st.table(df)
+
+col1, col2 = st.columns(2)
+with col1:
+    st.image('pca-optics.png', caption='Data distribution', use_column_width=True)
+with col2:
+    st.image('sil-optics.png', caption='Evaluation by Silhouette', use_column_width=True)     
 
   
