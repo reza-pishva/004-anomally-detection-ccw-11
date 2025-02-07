@@ -264,46 +264,57 @@ html_table = f"""
     <th style="border: 1px solid black; padding: 8px;">Result</th>
   </tr>
   <tr>
+    <td style="border: 1px solid black; padding: 8px;">1</td>
     <td style="border: 1px solid black; padding: 8px;">Agglomerative Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(agg)}">{agg}</td>
   </tr>
   <tr>
+    <td style="border: 1px solid black; padding: 8px;">2</td>
     <td style="border: 1px solid black; padding: 8px;">KMeans Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(kmeans)}">{kmeans}</td>
   </tr>
   <tr>
+    <td style="border: 1px solid black; padding: 8px;">3</td>
     <td style="border: 1px solid black; padding: 8px;">Gaussian Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(gaussian)}">{gaussian}</td>
   </tr>
   <tr>
+    <td style="border: 1px solid black; padding: 8px;">4</td>
     <td style="border: 1px solid black; padding: 8px;">Spectral Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(spectral)}">{spectral}</td>
   </tr>
   <tr>
+    <td style="border: 1px solid black; padding: 8px;">5</td>
     <td style="border: 1px solid black; padding: 8px;">Affinity propagation Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(affinity)}">{affinity}</td>
   </tr>
   <tr>
+    <td style="border: 1px solid black; padding: 8px;">6</td>
     <td style="border: 1px solid black; padding: 8px;">DBSCAN Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(dbscan)}">{dbscan}</td>
   </tr>
-    <tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">7</td>
     <td style="border: 1px solid black; padding: 8px;">Isolation forest Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(iso)}">{iso}</td>
   </tr>
   <tr>
+    <td style="border: 1px solid black; padding: 8px;">8</td>
     <td style="border: 1px solid black; padding: 8px;">OPTICS</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(optics)}">{optics}</td>
   </tr>
   <tr>
+    <td style="border: 1px solid black; padding: 8px;">9</td>
     <td style="border: 1px solid black; padding: 8px;">BIRCH</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(optics)}">{optics}</td>
   </tr>
   <tr>
+    <td style="border: 1px solid black; padding: 8px;">10</td>
     <td style="border: 1px solid black; padding: 8px;">LOF</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(lof)}">{lof}</td>
   </tr>
   <tr>
+    <td style="border: 1px solid black; padding: 8px;">11</td>
     <td style="border: 1px solid black; padding: 8px;">One-Class SVM</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(svm)}">{svm}</td>
   </tr>
