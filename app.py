@@ -246,6 +246,10 @@ html_table = f"""
     <td style="border: 1px solid black; padding: 8px;">DBSCAN Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(dbscan)}">{dbscan}</td>
   </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">DBSCAN Clustering</td>
+    <td style="border: 1px solid black; padding: 8px;{get_color(iso)}">{iso}</td>
+  </tr>
 </table>
 """
 # Use st.markdown to display the HTML table
