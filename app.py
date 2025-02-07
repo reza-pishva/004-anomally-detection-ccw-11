@@ -379,10 +379,11 @@ with col2:
     st.markdown('</div>', unsafe_allow_html=True)
   
 
-col1, col2 = st.columns(2)
-with col1:
-    st.image('pca-affinity.png', caption='Data distribution', use_column_width=True)
-   
+# col1, col2 = st.columns(2)
+# with col1:
+#     st.image('pca-affinity.png', caption='Data distribution', use_column_width=True)
+# with col2:
+#     st.image('sil-affinity.png', caption='Evaluation by Silhouette', use_column_width=True)     
 
 
 
