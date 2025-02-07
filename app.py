@@ -444,7 +444,7 @@ with col2:
 
 st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Spectral Clustering</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
-st.write(autoencoder)
+st.write(spectral)
 st.write(
     """
     <style>
