@@ -9,27 +9,24 @@ import streamlit.components.v1 as components
 # Text in first column
 st.markdown("<div style='font-size:36px; font-weight:bold;text-align:center'>M701D Series Gas Turbines</div>", unsafe_allow_html=True)
 st.image('index_im01.jpg', caption='', use_column_width=True)
-st.markdown("<div style='font-size:20px; font-weight:bold;'>Anomaly Detection based on Generator Bearing Vibrations</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:20px; font-weight:bold;'>Anomaly Detection for CCW (Closed Circuit Water) system</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
-st.write("The generator bearings for the M701D gas turbines are crucial components designed to support the rotor and ensure smooth operation.")
-st.write("Monitoring the vibration of generator bearings is crucial for several reasons:")
-st.write("1. Early Fault Detection: Vibration monitoring helps detect early signs of bearing wear or damage, allowing for timely maintenance before catastrophic failure occurs. This can prevent costly repairs and downtime1.")
-st.write("2. Predictive Maintenance: By analyzing vibration patterns, maintenance teams can predict when bearings might fail and schedule maintenance accordingly. This approach reduces unexpected outages and extends the lifespan of the equipment1.")
-st.write("3. Operational Efficiency: Properly maintained bearings ensure smooth operation, reducing energy losses and improving overall efficiency. This leads to cost savings and more reliable power generation.")
-st.write("4. Safety: Excessive vibration can cause stress on other components, leading to potential safety hazards. Monitoring vibration helps maintain a safe operating environment.")
-st.write("5. Quality Control: Vibration analysis is often used as a quality control measure to ensure bearings meet performance standards. It helps identify manufacturing defects or installation errors that could lead to premature failure.")
-st.write("In this process, considering the effect of the oil temperature of the compressor-side bearing and the oil temperature of the generator excitation side bearing on the vibration of the generator bearings,ٌWe decided in addition to the vibration of different points of the generator, the oil temperature of the generator and compressor excitation side bearing has also been used to create this model.The data used to train this model was collected from sensor information related to various systems of the unit, which is recorded daily by the power plant operations department staff at different time intervals, and covers the past five years.")
+st.write("The CCW (Closed Circuit Water) system in the M701D Series Gas Turbines is a critical component for cooling and maintaining the efficiency of the turbine. Here's a brief overview:")
+st.write("1. Purpose: The CCW system helps in cooling the turbine components, particularly the blades and vanes, to prevent overheating and maintain optimal performance.")
+st.write("2. Components: It typically includes a network of pipes, pumps, and heat exchangers that circulate water or a water-glycol mixture through the turbine")
+st.write("3. Operation: The system continuously circulates the cooling fluid, absorbing heat from the hot turbine parts and transferring it to a heat exchanger where it is dissipated.")
+st.write("4. Benefits: By maintaining lower temperatures, the CCW system enhances the durability and lifespan of the turbine components, improves efficiency, and reduces the risk of thermal stress and damage.")
 df2 = joblib.load('df.joblib')
 st.table(df2)
+
 st.write("The features used to train the model are the following:")
-st.write("1. GEN BRG VIB (COMP.) X")
-st.write("2. GEN BRG VIB (COMP.) Y")
-st.write("3. GEN BRG VIB (EXE SIDE) X")
-st.write("4. GEN BRG VIB (EXE SIDE) Y")
-st.write("5. EXE. BRG VIB X")
-st.write("6. EXE. BRG. VIB Y")
-st.write("7. GEN.BRG.DR.TEMP(COMP.SIDE)")
-st.write("8. GEN.BRG.DR.TEMP(EXC.SIDE)")
+st.write("1. GEN.INLET AIR TEMP.")
+st.write("2. GEN.OUTLET AIR TEMP.")
+st.write("3. C.W.INLET TEMP.")
+st.write("4. C.W. OUTLET TEMP.")
+st.write("5. C.W PUMP OUT LET PRESS")
+st.write("6. C.W.INLET PRESSUR")
+st.write("7. C.W OUT LET PRESS")
 
 st.write("The model was trained using historical data, with careful tuning of parameters.The silhouette score of the model indicates good clustering performance.")
 st.markdown(
@@ -85,6 +82,10 @@ scaler5 = joblib.load('scaler_ccw_affinity.joblib')
 clusters5 = joblib.load('clusters_ccw_affinity.joblib')
 affinity_model5 = joblib.load('model2_ccw_affinity.joblib')
 df5 = joblib.load('df_ccw_affinity.joblib')
+# Load the dbscan model, scaler, and clusters
+scaler6 = joblib.load('scaler_ccw_dbscan.joblib')
+clusters6 = joblib.load('clusters_ccw_dbscan.joblib')
+knearest_model6 = joblib.load('model2_ccw_dbscan.joblib')
 # # Load the autoencoder model, scaler, and clusters
 # scaler4 = joblib.load('scaler_vib_temp_auto.joblib')
 # clusters4 = joblib.load('clusters_vib_temp_auto.joblib')
@@ -105,21 +106,21 @@ scaled_data_kmeans = scaler2.transform(new_data)
 scaled_data_gaussion = scaler3.transform(new_data)
 scaled_data_spectral = scaler4.transform(new_data)
 scaled_data_affinity = scaler5.transform(new_data)
-# scaled_data_isolationforest = scaler6.transform(new_data)
+scaled_data_dbscan = scaler6.transform(new_data)
 # Find the nearest cluster
 _, indices = knearest_model.kneighbors(scaled_data)
 _, indices2 = knearest_model2.kneighbors(scaled_data)
 _, indices3 = gaussian_model3.kneighbors(scaled_data)
 _, indices4 = spectral_model4.kneighbors(scaled_data)
 _, indices5 = affinity_model5.kneighbors(scaled_data)
-# _, indices6 = knearest_model6.kneighbors(scaled_data)
+_, indices6 = knearest_model6.kneighbors(scaled_data)
 
 predicted_cluster = clusters[indices[0][0]]
 predicted_cluster2 = clusters2[indices2[0][0]]
 predicted_cluster3 = clusters3[indices3[0][0]]
 predicted_cluster4 = clusters4[indices4[0][0]]
 predicted_cluster5 = clusters5[indices5[0][0]]
-# predicted_cluster6 = clusters6[indices6[0][0]]
+predicted_cluster6 = clusters6[indices6[0][0]]
 
 # Predict the cluster for the input data
 agg =""
@@ -143,13 +144,11 @@ if st.button('Predict Cluster'):
     if (clusters3[indices3[0][0]]==0 or clusters3[indices3[0][0]]==1 or 
         clusters3[indices3[0][0]]==3 or clusters3[indices3[0][0]]==5):
         gaussian = "Normal"
-        # st.markdown(f'<p style="color:green;font-family:Tahoma;font-size:16">{gaussian}.</p>', unsafe_allow_html=True)
     else:
         gaussian = "Abnormal"  
     if (clusters4[indices4[0][0]]==0 or clusters4[indices4[0][0]]==2 or
         clusters4[indices4[0][0]]==7):
         spectral = "Normal"
-        # st.markdown(f'<p style="color:green;font-family:Tahoma;font-size:16">{gaussian}.</p>', unsafe_allow_html=True)
     else:
         spectral = "Abnormal"      
     if (clusters5[indices5[0][0]]==1 or
@@ -181,30 +180,14 @@ if st.button('Predict Cluster'):
         clusters5[indices5[0][0]]==15 or
         clusters5[indices5[0][0]]==49):
         affinity = "Abnormal"
-        # st.markdown(f'<p style="color:green;font-family:Tahoma;font-size:16">{gaussian}.</p>', unsafe_allow_html=True)
     else:
-        affinity = "Normal"          
-    #     # st.markdown(f'<p style="color:green;font-family:Tahoma;font-size:16">{gaussian}.</p>', unsafe_allow_html=True)
-    # if (clusters4[indices4[0][0]]==0 or clusters4[indices4[0][0]]==1 or 
-    #     clusters4[indices4[0][0]]==2 or clusters4[indices4[0][0]]==3):
-    #     autoencoder = "Normal"
-    #     # st.markdown(f'<p style="color:green;font-family:Tahoma;font-size:16">{autoencoder}.</p>', unsafe_allow_html=True)
-    # else:
-    #     autoencoder = "Abnormal"  
-    #     # st.markdown(f'<p style="color:green;font-family:Tahoma;font-size:16">{autoencoder}.</p>', unsafe_allow_html=True)
-    # if (clusters5[indices5[0][0]]==-1 or clusters5[indices5[0][0]]==0 or 
-    #     clusters5[indices5[0][0]]==1 or clusters5[indices5[0][0]]==2 or
-    #     indices5[0][0]==3 or clusters5[indices5[0][0]]==7):
-    #     dbscan = "Normal"        
-    # else:
-    #     dbscan = "Abnormal"  
-    #     # st.markdown(f'<p style="color:green;font-family:Tahoma;font-size:16">{dbscan}.</p>', unsafe_allow_html=True)
-    # if (clusters6[indices6[0][0]]==1):
-    #     isolationforest = "Normal"
-    #     # st.markdown(f'<p style="color:green;font-family:Tahoma;font-size:16">{isolationforest}.</p>', unsafe_allow_html=True)
-    # else:
-    #     isolationforest = "Abnormal"  
-    #     # st.markdown(f'<p style="color:green;font-family:Tahoma;font-size:16">{isolationforest}.</p>', unsafe_allow_html=True)
+        affinity = "Normal"   
+    if (clusters6[indices6[0][0]]==-1 or clusters6[indices6[0][0]]==0 or 
+        clusters6[indices6[0][0]]==3 or clusters6[indices6[0][0]]==4 or 
+        clusters6[indices6[0][0]]==5):
+        dbscan = "Abnormal"
+    else:
+        dbscan = "Normal"             
 
 def get_color(value):
     if value == "Normal":
@@ -241,22 +224,15 @@ html_table = f"""
     <td style="border: 1px solid black; padding: 8px;">Affinity propagation Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(affinity)}">{affinity}</td>
   </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">DBSCAN Clustering</td>
+    <td style="border: 1px solid black; padding: 8px;{get_color(dbscan)}">{dbscan}</td>
+  </tr>
 </table>
 """
-
-
-#   <tr>
-#     <td style="border: 1px solid black; padding: 8px;">Gaussian Mixture Model</td>
-#     <td style="border: 1px solid black; padding: 8px;{get_color(gaussian)}">{gaussian}</td>
-#   </tr>
-
-#   <tr>
-#     <td style="border: 1px solid black; padding: 8px;">IsolationForest</td>
-#     <td style="border: 1px solid black; padding: 8px;{get_color(isolationforest)}">{isolationforest}</td>
-#   </tr>
-
 # Use st.markdown to display the HTML table
 st.markdown(html_table, unsafe_allow_html=True)
+
 
 st.markdown("<div style='margin-top:50px;font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Agglomerative clustering</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
@@ -427,16 +403,13 @@ st.write(
     unsafe_allow_html=True
 )
 data = {
-    'Cluster': [1, 2, 3, 4,5],
-    'Count': [282,1069,33,2183,1665]
+    'Cluster': [-1, 0, 1, 2, 3, 4, 5],
+    'Count': [95,194,2902,1800,37,99,113]
 }
 df = pd.DataFrame(data)
 col1, col2 = st.columns([2,1])
 with col1:
-    st.write("This model has been trained by 5232 instances.")
-    st.write("In this model I have reached to 5 clusters and hyper parameters are chosen as eps=0.8, min_samples=5. Cluster 1 and 4 have been selected as abnormal condition.In this model I have considered 6 percent of instences as abnormal data.")
-    # st.write("In the lower part there are Silouette plot and PCA plot.")
-    st.write("As you can see Average Silhouette Score is equal to 0.372 and it is not close to 1 compare to earlier models and there is no negative value among clusters in silhouette plot.")
+    st.write("This model has been trained with 5240 instances. In this model, I have reached 7 clusters, and the hyperparameters are chosen as eps=0.7 and min_samples=10. Clusters 1 and 2 have been selected as the normal condition. In this model, I have considered 10 percent of instances as abnormal data. As you can see, the Average Silhouette Score is 0.06, which is far from 1 compared to earlier models, and there are many negative values among the clusters in the silhouette plot.")    
 with col2:
     st.table(df)
 
@@ -462,8 +435,8 @@ st.write(
     unsafe_allow_html=True
 )
 data = {
-    'Cluster': [1, 2, 3, 4, 5, 6 , 7 , 8],
-    'Count': [1386,202,1658,104,440,14,152,1284]
+    'Cluster': [-1, 0, 1, 2, 3, 4, 5],
+    'Count': [95,194,2902,1800,37,99,113]
 }
 df = pd.DataFrame(data)
 col1, col2 = st.columns([2,1])
@@ -481,141 +454,6 @@ with col1:
 with col2:
     st.image('sil-spectral.png', caption='Evaluation by Silhouette', use_column_width=True)     
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>DBSCAN</div>", unsafe_allow_html=True)
-st.markdown("<br>", unsafe_allow_html=True)
-st.write(dbscan)
-st.write(
-    """
-    <style>
-    .dataframe th, .dataframe td {
-        text-align: center;
+  
 
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-data = {
-    'Cluster': [1, 2, 3, 4,5],
-    'Count': [282,1069,33,2183,1665]
-}
-df = pd.DataFrame(data)
-col1, col2 = st.columns([2,1])
-with col1:
-    st.write("This model has been trained by 5232 instances.")
-    st.write("In this model I have reached to 5 clusters and hyper parameters are chosen as eps=0.8, min_samples=5. Cluster 1 and 4 have been selected as abnormal condition.In this model I have considered 6 percent of instences as abnormal data.")
-    # st.write("In the lower part there are Silouette plot and PCA plot.")
-    st.write("As you can see Average Silhouette Score is equal to 0.372 and it is not close to 1 compare to earlier models and there is no negative value among clusters in silhouette plot.")
-with col2:
-    st.table(df)
-
-col1, col2 = st.columns(2)
-with col1:
-    st.image('pca-dbscan.png', caption='Data distribution', use_column_width=True)
-with col2:
-    st.image('sil-dbscan.png', caption='Evaluation by Silhouette', use_column_width=True)   
-
-
-
-
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>Spectral Clustering</div>", unsafe_allow_html=True)
-st.markdown("<br>", unsafe_allow_html=True)
-st.write(autoencoder)
-st.write(
-    """
-    <style>
-    .dataframe th, .dataframe td {
-        text-align: center;
-
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-data = {
-    'Cluster': [1, 2, 3, 4, 5, 6 , 7 , 8],
-    'Count': [1386,202,1658,104,440,14,152,1284]
-}
-df = pd.DataFrame(data)
-col1, col2 = st.columns([2,1])
-with col1:
-    st.write("This model has been trained by 5240 instances.")
-    st.write("In this model I have chosen 8 clusters and clusters 5 and 6 have been selected as abnormal condition.In this model I have considered 12.5 percent of instences as abnormal data.")
-    # st.write("In the lower part there are Siluouette plot and PCA plot.")
-    st.write("As you can see Average Silhouette Score is equal to 0.367 and it is far from 1.")
-with col2:
-    st.table(df)
-
-col1, col2 = st.columns(2)
-with col1:
-    st.image('pca-spectral.png', caption='Data distribution', use_column_width=True)
-with col2:
-    st.image('sil-spectral.png', caption='Evaluation by Silhouette', use_column_width=True)     
-
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>DBSCAN</div>", unsafe_allow_html=True)
-st.markdown("<br>", unsafe_allow_html=True)
-st.write(dbscan)
-st.write(
-    """
-    <style>
-    .dataframe th, .dataframe td {
-        text-align: center;
-
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-data = {
-    'Cluster': [1, 2, 3, 4,5],
-    'Count': [282,1069,33,2183,1665]
-}
-df = pd.DataFrame(data)
-col1, col2 = st.columns([2,1])
-with col1:
-    st.write("This model has been trained by 5232 instances.")
-    st.write("In this model I have reached to 5 clusters and hyper parameters are chosen as eps=0.8, min_samples=5. Cluster 1 and 4 have been selected as abnormal condition.In this model I have considered 6 percent of instences as abnormal data.")
-    # st.write("In the lower part there are Silouette plot and PCA plot.")
-    st.write("As you can see Average Silhouette Score is equal to 0.372 and it is not close to 1 compare to earlier models and there is no negative value among clusters in silhouette plot.")
-with col2:
-    st.table(df)
-
-col1, col2 = st.columns(2)
-with col1:
-    st.image('pca-dbscan.png', caption='Data distribution', use_column_width=True)
-with col2:
-    st.image('sil-dbscan.png', caption='Evaluation by Silhouette', use_column_width=True)   
-
-# st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>IsolationForest</div>", unsafe_allow_html=True)
-# st.markdown("<br>", unsafe_allow_html=True)
-# st.write(dbscan)
-# st.write(
-#     """
-#     <style>
-#     .dataframe th, .dataframe td {
-#         text-align: center;
-
-#     }
-#     </style>
-#     """,
-#     unsafe_allow_html=True
-# )
-# data = {
-#     'Cluster': [1, 2],
-#     'Count': [262,4970]
-# }
-# df = pd.DataFrame(data)
-# col1, col2 = st.columns([2,1])
-# with col1:
-#     st.write("This model has been trained by 5232 instances.")
-#     st.write("In this model based on isolation forest algorithm we have just 2 clusters.abnormal condition is in cluster 1.")
-#     # st.write("In the lower part there are Silouette plot and PCA plot.")
-#     st.write("Average Silhouette Score is equal to 0.31.")
-# with col2:
-#     st.table(df)
-
-# col1, col2 = st.columns(2)
-# with col1:
-#     st.image('pca-isolationforest.png', caption='Data distribution', use_column_width=True)
-# with col2:
-#     st.image('sil-isolationforest.png', caption='Evaluation by Silhouette', use_column_width=True)    
+  
