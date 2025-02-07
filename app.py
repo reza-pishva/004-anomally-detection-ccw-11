@@ -99,10 +99,10 @@ knearest_model6 = joblib.load('model2_ccw_dbscan.joblib')
 scaler7 = joblib.load('scaler_ccw_iso.joblib')
 clusters7 = joblib.load('clusters_ccw_iso.joblib')
 knearest_model7 = joblib.load('model2_ccw_iso.joblib')
-# # Load the autoencoder model, scaler, and clusters
-# scaler4 = joblib.load('scaler_vib_temp_auto.joblib')
-# clusters4 = joblib.load('clusters_vib_temp_auto.joblib')
-# knearest_model4 = joblib.load('model2_vib_temp_auto.joblib')
+# Load the autoencoder model, scaler, and clusters
+scaler8 = joblib.load('scaler_ccw_optics.joblib')
+clusters8 = joblib.load('clusters_ccw_optics.joblib')
+knearest_model8 = joblib.load('model2_ccw_optics.joblib')
 # Load the dbscan. model, scaler, and clusters
 # scaler5 = joblib.load('scaler_ccw_dbscan.joblib')
 # clusters5 = joblib.load('clusters_ccw_dbscan.joblib')
@@ -118,6 +118,7 @@ scaled_data_spectral = scaler4.transform(new_data)
 scaled_data_affinity = scaler5.transform(new_data)
 scaled_data_dbscan = scaler6.transform(new_data)
 scaled_data_iso= scaler7.transform(new_data)
+scaled_data_optics= scaler8.transform(new_data)
 # Find the nearest cluster
 _, indices = knearest_model.kneighbors(scaled_data)
 _, indices2 = knearest_model2.kneighbors(scaled_data)
@@ -126,6 +127,7 @@ _, indices4 = spectral_model4.kneighbors(scaled_data)
 _, indices5 = affinity_model5.kneighbors(scaled_data)
 _, indices6 = knearest_model6.kneighbors(scaled_data)
 _, indices7 = knearest_model7.kneighbors(scaled_data)
+_, indices8 = knearest_model8.kneighbors(scaled_data)
 
 predicted_cluster = clusters[indices[0][0]]
 predicted_cluster2 = clusters2[indices2[0][0]]
@@ -134,6 +136,7 @@ predicted_cluster4 = clusters4[indices4[0][0]]
 predicted_cluster5 = clusters5[indices5[0][0]]
 predicted_cluster6 = clusters6[indices6[0][0]]
 predicted_cluster7 = clusters7[indices7[0][0]]
+predicted_cluster8 = clusters8[indices8[0][0]]
 
 # Predict the cluster for the input data
 agg =""
@@ -145,6 +148,7 @@ isolationforest=""
 spectral=""
 affinity=""
 iso=""
+optics=""
 if st.button('Predict Cluster'):
     if (clusters[indices[0][0]]==0 or clusters[indices[0][0]]==1):
         agg = "Normal"      
@@ -202,10 +206,14 @@ if st.button('Predict Cluster'):
         dbscan = "Abnormal"
     else:
         dbscan = "Normal"     
-    if (clusters6[indices6[0][0]]==1):
+    if (clusters7[indices7[0][0]]==1):
         iso = "Normal"
     else:
-        iso = "Abormal"             
+        iso = "Abormal" 
+    if (clusters8[indices8[0][0]]==0 or clusters8[indices8[0][0]]==1):
+        iso = "Normal"
+    else:
+        iso = "Abormal"                      
 
 def get_color(value):
     if value == "Normal":
@@ -249,6 +257,10 @@ html_table = f"""
   <tr>
     <td style="border: 1px solid black; padding: 8px;">Isolation forest Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(iso)}">{iso}</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">Isolation forest Clustering</td>
+    <td style="border: 1px solid black; padding: 8px;{get_color(optics)}">{optics}</td>
   </tr>
 </table>
 """
@@ -511,6 +523,38 @@ with col1:
 with col2:
     st.image('sil-isolationforest.png', caption='Evaluation by Silhouette', use_column_width=True)  
 
-  
+
+st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#4C585B;border-radius:5px;text-align:center'>OPTICS (Ordering Points To Identify the Clustering Structure)</div>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
+st.write(optics)
+st.write(
+    """
+    <style>
+    .dataframe th, .dataframe td {
+        text-align: center;
+
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+data = {
+    'Cluster': [-1, 0 ,1],
+    'Count': [500,1815,2925]
+}
+df = pd.DataFrame(data)
+col1, col2 = st.columns([2,1])
+with col1:
+    st.write("This model has been trained by 5240 instances.")
+    st.write("In this model I have chosen 2 clusters and cluster 1 has been selected as abnormal condition.In this model I have considered 10.5 percent of instences as abnormal data.")
+    st.write("As you can see Average Silhouette Score is equal to 0.29.")
+with col2:
+    st.table(df)
+
+col1, col2 = st.columns(2)
+with col1:
+    st.image('pca-optics.png', caption='Data distribution', use_column_width=True)
+with col2:
+    st.image('sil-optics.png', caption='Evaluation by Silhouette', use_column_width=True)   
 
   
