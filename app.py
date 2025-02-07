@@ -226,18 +226,9 @@ def get_color(value):
 
 html_table = f"""
 <table style="width:100%; border-collapse: collapse;">
-
   <tr>
     <th style="border: 1px solid black; padding: 8px;">Clustering algorithm</th>
     <th style="border: 1px solid black; padding: 8px;">Result</th>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black; padding: 8px;">Isolation forest Clustering</td>
-    <td style="border: 1px solid black; padding: 8px;{get_color(iso)}">{iso}</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid black; padding: 8px;">OPTICS</td>
-    <td style="border: 1px solid black; padding: 8px;{get_color(optics)}">{optics}</td>
   </tr>
   <tr>
     <td style="border: 1px solid black; padding: 8px;">Agglomerative Clustering</td>
@@ -263,7 +254,14 @@ html_table = f"""
     <td style="border: 1px solid black; padding: 8px;">DBSCAN Clustering</td>
     <td style="border: 1px solid black; padding: 8px;{get_color(dbscan)}">{dbscan}</td>
   </tr>
-  
+    <tr>
+    <td style="border: 1px solid black; padding: 8px;">Isolation forest Clustering</td>
+    <td style="border: 1px solid black; padding: 8px;{get_color(iso)}">{iso}</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black; padding: 8px;">OPTICS</td>
+    <td style="border: 1px solid black; padding: 8px;{get_color(optics)}">{optics}</td>
+  </tr>
 </table>
 """
 # Use st.markdown to display the HTML table
