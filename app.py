@@ -211,9 +211,9 @@ if st.button('Predict Cluster'):
     else:
         iso = "Abormal" 
     if (clusters8[indices8[0][0]]==0 or clusters8[indices8[0][0]]==1):
-        iso = "Normal"
+        optics = "Normal"
     else:
-        iso = "Abormal"                      
+        optics = "Abormal"                      
 
 def get_color(value):
     if value == "Normal":
