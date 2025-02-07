@@ -260,6 +260,7 @@ def get_color(value):
 html_table = f"""
 <table style="width:100%; border-collapse: collapse;">
   <tr>
+    <th style="border: 1px solid black; padding: 8px;">#</td>
     <th style="border: 1px solid black; padding: 8px;">Clustering algorithm</th>
     <th style="border: 1px solid black; padding: 8px;">Result</th>
   </tr>
