@@ -37,6 +37,11 @@ st.write("6. C.W.INLET PRESSUR")
 st.write("7. C.W OUT LET PRESS")
 
 st.write("The silhouette score of the model indicates good clustering performance.")
+col1, col2 = st.columns(2)
+with col1:
+    st.image('pic/elbow.png', caption='Elbow Method', use_column_width=True)
+with col2:
+    st.image('pic/silhouette.png', caption='Silhouette Method', use_column_width=True)  
 st.write("You may select the value of each feature to determine whether the condition based on our selection is normal or abnormal:")
 st.markdown(
     """
