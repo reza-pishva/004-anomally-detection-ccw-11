@@ -12,7 +12,7 @@ def style_df(df):
 background_color = """
     <style>
     .stApp {
-        background-color: #387478;
+        background-color: #3674B5;
         color: white;
     }
     .stButton {
