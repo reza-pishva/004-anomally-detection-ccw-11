@@ -403,7 +403,7 @@ st.markdown(html_table, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 st.write("In this section, I have detailed the hyperparameters that have been tuned and the clusters that have been selected.")
-st.markdown("<div style='margin-top:50px;font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>Agglomerative clustering</div>", unsafe_allow_html=True)
+st.markdown("<div style='margin-top:50px;font-size:24px;color:white;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>Agglomerative clustering</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(agg)
 
