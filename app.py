@@ -396,9 +396,9 @@ styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
   st.write("This model has been trained by 5548 instances.")
-  st.write("In this model, I have chosen 5 clusters. Clusters 2, 3, and 4 have been selected as abnormal conditions, and they contain 0.45 percent of the data.")
-  st.write("In the lower part there are Siluouette plot and PCA plot. I have reduced the dimensions into 2 so that we can see data points distribution for different clusters.")
-  st.write("As you can see there are two large clusters and three small ones. Increasing the number of clusters did not help, and we always end up with many large clusters and two or three small ones.")
+  st.write("In this model, five clusters have been established. Clusters 2, 3, and 4 have been designated as representing abnormal conditions, collectively comprising 0.45 percent of the dataset.")
+  st.write("Average Silhouette Score: 0.5283754701280144")
+  st.write("The clusters created using the training data are displayed here:")
 with col2:
   st.write(styled_df.to_html(escape=False), unsafe_allow_html=True)
 
