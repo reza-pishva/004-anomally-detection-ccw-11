@@ -356,7 +356,7 @@ html_table = f"""
   </tr> 
   <tr>
     <td style="border: 1px solid white; padding: 8px;text-align:center">5</td>
-    <td style="border: 1px solid white; padding: 8px;">Affinity propagation Clustering</td>
+    <td style="border: 1px solid white; padding: 8px;">Affinity propagation</td>
     <td style="text-align:center;border: 1px solid white; padding: 8px;{get_color(affinity)}">{affinity}</td>
   </tr>
   <tr>
@@ -541,7 +541,7 @@ with col2:
     st.image('pic/sil-spectral.png', caption='Evaluation by Silhouette', use_column_width=True) 
 
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>Affinity propagation Clustering</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>Affinity propagation</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(affinity)
 st.write(
