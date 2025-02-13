@@ -54,13 +54,19 @@ st.markdown("<div style='font-size:18px; font-weight:bold;color:#EDF4C2'>Data Sc
 st.markdown("<div style='font-size:18px; font-weight:bold;color:#EDF4C2'>Quality Assurance Engineer: Almas Baharlooie</div>", unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
+
+
 st.write("The CCW (Closed Circuit Water) system in the M701D Series Gas Turbines is a critical component for cooling and maintaining the efficiency of the turbine and data-driven techniques like clustering and anomaly detection can be incredibly beneficial for monitoring and maintaining the Closed Circuit Water (CCW) system in the M701D Series Gas Turbines")
 st.write("Clustering algorithms group similar data points together, which can help in identifying patterns and trends within the CCW system. For example:")
-st.write("Pattern Recognition: By clustering historical data, you can identify normal operational patterns and detect deviations from these patterns")
-st.write("Predictive Maintenance: Clustering can help predict potential failures by identifying unusual patterns that may indicate wear and tear or other issues.")
+st.markdown("<div style='font-size:18px; font-weight:bold;color:white'>Pattern Recognition:</div>", unsafe_allow_html=True)
+st.write(" By clustering historical data, you can identify normal operational patterns and detect deviations from these patterns")
+st.markdown("<div style='font-size:18px; font-weight:bold;color:white'>Predictive Maintenance:</div>", unsafe_allow_html=True)
+st.write("Clustering can help predict potential failures by identifying unusual patterns that may indicate wear and tear or other issues.")
 st.write("Anomaly detection techniques identify unusual or unexpected patterns in the data, which can be crucial for early fault detection and prevention. For instance:")
-st.write("Early Fault Detection: By continuously monitoring the CCW system, anomaly detection can quickly identify any deviations from normal operation, allowing for timely intervention")
-st.write("Operational Efficiency: Detecting anomalies can help in maintaining the efficiency of the gas turbines by addressing issues before they escalate into major problems")
+st.markdown("<div style='font-size:18px; font-weight:bold;color:white'>Early Fault Detection:</div>", unsafe_allow_html=True)
+st.write("By continuously monitoring the CCW system, anomaly detection can quickly identify any deviations from normal operation, allowing for timely intervention")
+st.markdown("<div style='font-size:18px; font-weight:bold;color:white'>Operational Efficiency:</div>", unsafe_allow_html=True)
+st.write(" Detecting anomalies can help in maintaining the efficiency of the gas turbines by addressing issues before they escalate into major problems")
 st.write("The model was trained using historical data, with careful tuning of parameters.")
 st.markdown("<br>", unsafe_allow_html=True)
 df2 = joblib.load('joblib/df.joblib')
