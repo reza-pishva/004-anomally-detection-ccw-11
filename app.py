@@ -403,7 +403,7 @@ st.markdown(html_table, unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 st.write("In this section, I have detailed the hyperparameters that have been tuned and the clusters that have been selected.")
-st.markdown("<div style='margin-top:50px;font-size:24px;color:white;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>Agglomerative clustering</div>", unsafe_allow_html=True)
+st.markdown("<div style='margin-top:50px;font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>Agglomerative clustering</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(agg)
 
@@ -432,7 +432,7 @@ with col2:
     st.image('pic/sil-agg.png', caption='Evaluation by Silhouette', use_column_width=True) 
 
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>KMeans clustering</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>KMeans clustering</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(kmeans)
 st.write(
@@ -472,7 +472,7 @@ with col2:
 
 
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>Gaussian Mixture Model</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>Gaussian Mixture Model</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(gaussian)
 st.write(
@@ -510,7 +510,7 @@ with col2:
     st.image('pic/sil-gaussian.png', caption='Evaluation by Silhouette', use_column_width=True) 
 
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>Spectral Clustering</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>Spectral Clustering</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(spectral)
 st.write(
@@ -548,7 +548,7 @@ with col2:
     st.image('pic/sil-spectral.png', caption='Evaluation by Silhouette', use_column_width=True) 
 
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>Affinity propagation</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>Affinity propagation</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(affinity)
 st.write(
@@ -583,7 +583,7 @@ with col2:
     st.dataframe(df5)
     st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>DBSCAN</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>DBSCAN</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(dbscan)
 st.write(
@@ -621,7 +621,7 @@ with col2:
     st.image('pic/sil-dbscan.png', caption='Evaluation by Silhouette', use_column_width=True)     
 
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>Isolation forest Clustering</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>Isolation forest Clustering</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(spectral)
 st.write(
@@ -658,7 +658,7 @@ with col2:
     st.image('pic/sil-isolationforest.png', caption='Evaluation by Silhouette', use_column_width=True)     
 
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>OPTICS</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>OPTICS</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(optics)
 st.write(
@@ -699,7 +699,7 @@ with col1:
 with col2:
     st.image('pic/sil-optics.png', caption='Evaluation by Silhouette', use_column_width=True)   
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>BIRCH</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>BIRCH</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(birch)
 st.write(
@@ -737,7 +737,7 @@ with col2:
 
 
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>LOF</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>LOF</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(lof)
 st.write(
@@ -775,7 +775,7 @@ with col2:
 
 
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>One-Class SVM</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>One-Class SVM</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(svm)
 st.write(
