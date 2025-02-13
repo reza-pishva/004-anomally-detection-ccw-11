@@ -63,7 +63,21 @@ st.write("4. Benefits: By maintaining lower temperatures, the CCW system enhance
 st.write("The model was trained using historical data, with careful tuning of parameters.")
 st.markdown("<br>", unsafe_allow_html=True)
 df2 = joblib.load('joblib/df.joblib')
-st.write(df2.to_html(escape=False), unsafe_allow_html=True)
+st.markdown(
+    """
+    <style>
+    .dataframe-container {
+        margin-top:10px;
+        height: 100px;
+        weight: 80px;
+        overflow-x: scroll;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True)
+st.markdown('<div class="dataframe-container">', unsafe_allow_html=True)
+st.dataframe(df2)
+st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -426,16 +440,17 @@ st.write(
     unsafe_allow_html=True
 )
 data = {
-    'Cluster': [1, 2, 3, 4, 5],
-    'Count': [2246, 1390, 686, 310, 600]
+    'Cluster': [0,1,2,3,4,5],
+    'Count': [861,1190,365,927,837,1060]
 }
 df = pd.DataFrame(data)
 styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
-    st.write("This model has been trained by 5232 instances.")
-    st.write("In this model I have reached to 5 clusters and it was close to the result of elbow plot and cluster 4 has been selected as abnormal condition. About 5.92 percent of data points has been selected as abnormal data.")
-    st.write("As you can see these clusters are closer to 1 compare to agglomerative model and the average score is more than that model and have fewer negative values so it might be more reliable rather than previous clustering model.")
+    st.write("This model has been trained by 5548 instances.")
+    st.write("In this model, five clusters have been identified. Cluster 2 has been designated as representing abnormal conditions. Consequently, approximately 6.27 percent of the data points have been classified as abnormal.")
+    st.write("Average Silhouette Score: 0.413153584837354")
+    st.write("The clusters created using the training data are displayed here:")
 with col2:
     st.write(styled_df.to_html(escape=False), unsafe_allow_html=True)
 
@@ -465,7 +480,7 @@ st.write(
     unsafe_allow_html=True
 )
 data = {
-    'Cluster': [0,1, 2, 3, 4 ,5],
+    'Cluster': [0,1,2,3,4,5],
     'Count': [709,2226,282,1216,193,614]
 }
 df = pd.DataFrame(data)
@@ -473,8 +488,9 @@ styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
     st.write("This model has been trained by 5240 instances.")
-    st.write("In this model, I have chosen 6 clusters. Clusters 2 and 4 have been identified as abnormal conditions, and 14 percent of the instances have been classified as abnormal data points.")
-    st.write("As you can see Average Silhouette Score is equal to 0.15 and it is far from 1.")
+    st.write("In this model, a total of five clusters have been identified. Among them, Clusters 2 and 4 have been designated as representing abnormal conditions. As a result, 8.56 percent of the instances have been classified as abnormal data points.")
+    st.write("Average Silhouette Score: 0.152732874781018")
+    st.write("The clusters created using the training data are displayed here:")
 with col2:
     st.write(styled_df.to_html(escape=False), unsafe_allow_html=True)
 
@@ -502,16 +518,17 @@ st.write(
     unsafe_allow_html=True
 )
 data = {
- 'Cluster': [-1, 0, 1, 2, 3, 4, 5],
- 'Count': [95,194,2902,1800,37,99,113]
+ 'Cluster': [-1, 0, 1, 2, 3, 4, 5 ,6],
+ 'Count': [1386,202,1658,104,440,14,152,1284]
 }
 df = pd.DataFrame(data)
 styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
     st.write("This model has been trained by 5240 instances.")
-    st.write("In this model I have chosen 8 clusters and clusters 5 and 6 have been selected as abnormal condition.In this model I have considered 12.5 percent of instences as abnormal data.")
-    st.write("As you can see Average Silhouette Score is equal to 0.367 and it is far from 1.")
+    st.write("In this model, eight clusters have been identified. Clusters 0,2,5,6 have been designated as representing an abnormal condition. Consequently, 8.5 percent of the instances have been classified as abnormal data.")
+    st.write("Average Silhouette Score: 0.3332918979732314")
+    st.write("The clusters created using the training data are displayed here:")
 with col2:
     st.write(styled_df.to_html(escape=False), unsafe_allow_html=True)
 
@@ -540,7 +557,8 @@ st.write(
 )
 col1, col2 = st.columns([2,1])
 with col1:
-    st.write("This model has been trained by 5040 instances.")
+    st.write("This model has been trained by 5240 instances.")
+    st.write("Average Silhouette Score: 0.30728965710248635")
 with col2:
 
     st.markdown(
@@ -573,14 +591,17 @@ st.write(
     unsafe_allow_html=True
 )
 data = {
-    'Cluster': [-1, 0, 1, 2, 3, 4, 5],
-    'Count': [95,194,2902,1800,37,99,113]
+    'Cluster': [-1,0,1,2,3,4,5,6],
+    'Count': [44,200,2922,1813,8,38,102,113]
 }
 df = pd.DataFrame(data)
 styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
-    st.write("This model has been trained with 5240 instances. In this model, I have reached 7 clusters, and the hyperparameters are chosen as eps=0.7 and min_samples=10. Clusters 1 and 2 have been selected as the normal condition. In this model, I have considered 10 percent of instances as abnormal data. As you can see, the Average Silhouette Score is 0.06, which is far from 1 compared to earlier models, and there are many negative values among the clusters in the silhouette plot.")    
+    st.write("This model has been trained with 5240 instances. In this model, two clusters have been identified. Cluster -1,0,3,4,5,6 have been designated as representing the abnormal condition. Consequently, 9.63 percent of the instances have been classified as abnormal data.")    
+    st.write("Best Parameters: eps=1.0, min_samples=5")
+    st.write("Average Silhouette Score: 0.32329093733063174")
+    st.write("The clusters created using the training data are displayed here:")    
 with col2:
     st.write(styled_df.to_html(escape=False), unsafe_allow_html=True)
 
@@ -616,8 +637,8 @@ styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
     st.write("This model has been trained by 5240 instances.")
-    st.write("In this model I have chosen 2 clusters and cluster 1 has been selected as abnormal condition.In this model I have considered 8 percent of instences as abnormal data.")
-    st.write("As you can see Average Silhouette Score is equal to 0.39.")
+    st.write("In this model, two clusters have been identified. Cluster -1 has been designated as representing the abnormal condition. Consequently, 8.01 percent of the instances have been classified as abnormal data.")
+    st.write("Average Silhouette Score: 0.3979264306615179")
 with col2:
     st.write(styled_df.to_html(escape=False), unsafe_allow_html=True)
 
@@ -630,7 +651,7 @@ with col2:
     st.image('pic/sil-isolationforest.png', caption='Evaluation by Silhouette', use_column_width=True)     
 
 
-st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>OPTICS (Ordering Points To Identify the Clustering Structure)</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px;color:white;font-weight:bold;height:40px;background-color:#7886C7;border-radius:5px;text-align:center'>OPTICS</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write(optics)
 st.write(
@@ -652,6 +673,11 @@ df = pd.DataFrame(data)
 styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
+    st.write("This model has been trained by 5240 instances.")
+    st.write("In this model, I have defined 3 clusters. Cluster -1 has been identified as an abnormal condition. As a result, 10.5 percent of the instances have been classified as abnormal data.")
+    st.write("Best Parameters: min_samples=9, xi=0.060000000000000005")
+    st.write("Average Silhouette Score: 0.29186307270218864")
+
     st.write("This model has been trained by 5240 instances.")
     st.write("In this model I have chosen 2 clusters and cluster 1 has been selected as abnormal condition.In this model I have considered 10.5 percent of instences as abnormal data.")
     st.write("As you can see Average Silhouette Score is equal to 0.29.")
@@ -689,8 +715,8 @@ styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
     st.write("This model has been trained by 5240 instances.")
-    st.write("In this model,11 clusters have been considered. Cluster 1,7 and 9 have been selected as normal condition. In this model I have considered 9.16 percent of instences as abnormal data.")
-    st.write("As you can see Average Silhouette Score is equal to 0.34.")
+    st.write("In this model, four clusters have been established. Clusters 1,7 and 9 have been designated as representing normal conditions. As a result, 9.16 percent of the instances have been classified as abnormal data.")
+    st.write("Average Silhouette Score: 0.340891129318577")
 with col2:
     st.write(styled_df.to_html(escape=False), unsafe_allow_html=True)
 
@@ -727,8 +753,8 @@ styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
     st.write("This model has been trained by 5240 instances.")
-    st.write("In this model,2 clusters have been considered. Cluster -1 has been selected as abnormal condition. In this model I have considered 8 percent of instences as abnormal data.")
-    st.write("As you can see Average Silhouette Score is equal to 0.17.")
+    st.write("This model has defined two clusters, with Cluster -1 being identified as the abnormal condition. Consequently, 8 percent of the instances are classified as abnormal data.")
+    st.write("Average Silhouette Score: 0.1789845850654112")
 with col2:
     st.write(styled_df.to_html(escape=False), unsafe_allow_html=True)
 
@@ -765,8 +791,8 @@ styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
     st.write("This model has been trained by 5240 instances.")
-    st.write("In this model,2 clusters have been considered. Cluster -1 has been selected as abnormal condition. In this model I have considered 8 percent of instences as abnormal data.")
-    st.write("As you can see Average Silhouette Score is equal to 0.35.")
+    st.write("In this model, two clusters have been identified. Cluster -1 has been designated as representing the abnormal condition. Consequently,8 percent of the instances have been classified as abnormal data.")
+    st.write("Average Silhouette Score: 0.1789845850654112")
 with col2:
     st.write(styled_df.to_html(escape=False), unsafe_allow_html=True)
 
