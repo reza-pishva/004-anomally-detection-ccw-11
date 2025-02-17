@@ -260,7 +260,7 @@ if st.button('Predict Cluster'):
     else:
         gaussian = "Abnormal"  
     if (clusters4[indices4[0][0]]==0 or clusters4[indices4[0][0]]==2 or
-        clusters4[indices4[0][0]]==7):
+        clusters4[indices4[0][0]]==6):
         spectral = "Normal"
     else:
         spectral = "Abnormal"      
@@ -509,7 +509,6 @@ with col2:
 
 
 st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>Spectral Clustering</div>", unsafe_allow_html=True)
-st.markdown("<br>", unsafe_allow_html=True)
 st.write(spectral)
 st.write(
     """
@@ -523,7 +522,7 @@ st.write(
     unsafe_allow_html=True
 )
 data = {
- 'Cluster': [-1, 0, 1, 2, 3, 4, 5 ,6],
+ 'Cluster': [0,1,2,3,4,5,6,7],
  'Count': [1386,202,1658,104,440,14,152,1284]
 }
 df = pd.DataFrame(data)
@@ -531,7 +530,7 @@ styled_df = style_df(df)
 col1, col2 = st.columns([2,1])
 with col1:
     st.write("This model has been trained by 5240 instances.")
-    st.write("In this model, eight clusters have been identified. Clusters 0,2,5,6 have been designated as representing an abnormal condition. Consequently, 8.5 percent of the instances have been classified as abnormal data.")
+    st.write("In this model, seven clusters have been identified. Clusters 0,2,6 have been designated as representing an normal condition. Consequently, 8.5 percent of the instances have been classified as abnormal data.")
     st.write("Average Silhouette Score: 0.3332918979732314")
     st.write("The clusters created using the training data are displayed here:")
 with col2:
@@ -541,9 +540,9 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pic/pca-spectral.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-spectral.png', caption='', use_column_width=True)
 with col2:
-    st.image('pic/sil-spectral.png', caption='Evaluation by Silhouette', use_column_width=True) 
+    st.image('pic/sil-spectral.png', caption='', use_column_width=True) 
 
 
 st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>Affinity propagation</div>", unsafe_allow_html=True)
