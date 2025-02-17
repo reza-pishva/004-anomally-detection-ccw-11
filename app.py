@@ -6,7 +6,8 @@ import streamlit.components.v1 as components
 
 
 def style_df(df):
-    return df.style.applymap(lambda x: 'color: white;text-align:center')
+    df = df.reset_index(drop=True)
+    return df.style.applymap(lambda x: 'color: white;text-align:center;border:1px solid white')
 
 # Inject HTML/CSS to change background color
 background_color = """
