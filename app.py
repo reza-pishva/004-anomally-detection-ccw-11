@@ -653,7 +653,6 @@ with col2:
 
 
 st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>OPTICS</div>", unsafe_allow_html=True)
-st.markdown("<br>", unsafe_allow_html=True)
 st.write(optics)
 st.write(
     """
@@ -678,10 +677,6 @@ with col1:
     st.write("In this model, I have defined 3 clusters. Cluster -1 has been identified as an abnormal condition. As a result, 10.5 percent of the instances have been classified as abnormal data.")
     st.write("Best Parameters: min_samples=9, xi=0.060000000000000005")
     st.write("Average Silhouette Score: 0.29186307270218864")
-
-    st.write("This model has been trained by 5240 instances.")
-    st.write("In this model I have chosen 2 clusters and cluster 1 has been selected as abnormal condition.In this model I have considered 10.5 percent of instences as abnormal data.")
-    st.write("As you can see Average Silhouette Score is equal to 0.29.")
 with col2:
     st.write(styled_df.to_html(escape=False), unsafe_allow_html=True)
 
