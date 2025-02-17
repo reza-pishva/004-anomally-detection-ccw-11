@@ -48,7 +48,7 @@ st.markdown(background_color, unsafe_allow_html=True)
 # Text in first column
 st.markdown("<div style='font-size:36px; font-weight:bold;text-align:center;'>M701D Series Gas Turbines</div>", unsafe_allow_html=True)
 st.image('./pic/index_im01.jpg', caption='', use_column_width=True)
-st.markdown("<div style='font-size:24px; font-weight:bold;'>Anomaly Detection for boiler feed pump system</div>", unsafe_allow_html=True)
+st.markdown("<div style='font-size:24px; font-weight:bold;'>Anomaly Detection for CCW (Closed Circuit Water) system</div>", unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
 st.markdown("<div style='font-size:20px;color:#EDF4C2'>Data Scientist: Reza Pishva</div>", unsafe_allow_html=True)
