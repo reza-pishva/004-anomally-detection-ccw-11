@@ -104,9 +104,9 @@ st.write(" Anomaly detection was performed by taking majority votes into account
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pic/elbow.png', caption='Elbow Method', use_column_width=True)
+    st.image('pic/elbow.png', caption='', use_column_width=True)
 with col2:
-    st.image('pic/silhouette.png', caption='Silhouette Method', use_column_width=True)  
+    st.image('pic/silhouette.png', caption='', use_column_width=True)  
 
 
 
@@ -404,7 +404,6 @@ st.markdown(html_table, unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 st.write("In this section, I have detailed the hyperparameters that have been tuned and the clusters that have been selected.")
 st.markdown("<div style='margin-top:50px;font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>Agglomerative clustering</div>", unsafe_allow_html=True)
-st.markdown("<br>", unsafe_allow_html=True)
 st.write(agg)
 
 data = {
@@ -427,9 +426,9 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pic/pca-agg.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-agg.png', caption='', use_column_width=True)
 with col2:
-    st.image('pic/sil-agg.png', caption='Evaluation by Silhouette', use_column_width=True) 
+    st.image('pic/sil-agg.png', caption='', use_column_width=True) 
 
 
 st.markdown("<div style='font-size:24px;color:black;font-weight:bold;height:40px;background-color:#EFB036;border-radius:5px;text-align:center'>KMeans clustering</div>", unsafe_allow_html=True)
