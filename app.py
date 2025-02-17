@@ -758,9 +758,9 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 with col1:
-    st.image('pic/pca-lof.png', caption='Data distribution', use_column_width=True)
+    st.image('pic/pca-lof.png', caption='', use_column_width=True)
 with col2:
-    st.image('pic/sil-lof.png', caption='Evaluation by Silhouette', use_column_width=True)  
+    st.image('pic/sil-lof.png', caption='', use_column_width=True)  
 
 
 
